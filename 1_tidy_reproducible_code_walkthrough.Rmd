@@ -1,0 +1,28 @@
+---
+title: "Tidy and reproducible code"
+author: "Rich Cottrell"
+date: '2023-05-01'
+output: pdf_document
+---
+
+# Getting started
+
+This session assumes that you have installed R and R Studio. If you have not, visit <https://cran.r-project.org/bin/windows/base/> (Windows) or <https://cran.r-project.org/bin/macosx/> (MacOS) to install R. Got to <https://posit.co/download/rstudio-desktop/> to download R Studio.
+
+## Git and Github
+
+Next you'll need a Github account. Go to <https://github.com/> and sign up for free, following the prompts.
+
+### *What are Git and Github?*
+
+*Git* is an open-source version control software. It tracks the changes you make to files in a repository, creates a record of the versions, and stores these changes in a hidden sub folder. *Github* is an online interface that allows you to store, manage, and share your files. You don't need Github use git, but you do need git for storing your code on github. 
+
+
+
+
+```{r}
+
+
+
+
+```
