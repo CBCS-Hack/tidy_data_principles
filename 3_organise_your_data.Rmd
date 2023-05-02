@@ -60,11 +60,17 @@ From the tidied data - create intermediate products for each country and save th
 ```{r}
 
 
+
+
 fisheries_list <- 
   fisheries_final |> 
-  mutate(country = gsub(pattern = "/", replacement = "", country)) |> 
+  mutate(country = gsub(pattern = "/", replacement = "", country)) |> #remove forward slashes from country names because R thinks these are part of the file path
+  mutate(country = case_when(grepl("Cura", country) ~ "Curacao",
+                             grepl("Ivoire", country) ~ "Cote d'Ivoire",
+                             TRUE ~ country)) |> #fixes countries where special symbols have corrupted
   group_by(country) |> 
   group_split()
+
 
 
 map(.x = fisheries_list, .f = \(this_country_df){
@@ -77,7 +83,7 @@ map(.x = fisheries_list, .f = \(this_country_df){
 
 })
 
-
+unique(fisheries_list$country)
 
 ```
 
@@ -91,7 +97,26 @@ Now select a specific country, add a new variable, and save it as an output.
   mutate(cum_value = cumsum(sum_value))
 )
 
-write_csv(x = aus_landings, file = "data/output/")
+write_csv(x = aus_landings, file = "data/output/aus_summarised.csv")
 
+
+```
+
+Create a figure from the finalised data and save it in the figures folder.
+
+```{r}
+
+read_csv("data/output/aus_summarised.csv") |> 
+  ggplot() +
+  geom_line(aes(x = year, y = sum_value), col = "dodgerblue4")+
+  #geom_line(aes(x = year, y = cum_value), col = "firebrick4")+
+  labs(y = "Landings (tonnes)")+
+  theme_bw()+
+  theme(text = element_text(size=8))+
+  scale_y_continuous(labels = scales::label_comma())
+
+ggsave(plot = last_plot(), filename = "figures/landings_for_australia.jpg", device = "jpg", dpi = 600, width = 9, height = 7, units = "cm")
+  
+  
 
 ```

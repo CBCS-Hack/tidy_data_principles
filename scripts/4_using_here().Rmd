@@ -1,0 +1,19 @@
+---
+title: "Using here()"
+author: "Rich Cottrell"
+date: '2023-05-02'
+output: pdf_document
+---
+
+For some projects you will have lots of scripts and you may not want all of these scripts in your main project folder (the location we have for the previous scripts), but inside a dedicated 'scripts' folder instead to keep it all neat. 
+
+Top achieve this and still use the power of projects, you will need the 'here()' function inside the 'here' package. Let's see why.
+
+
+```{r}
+
+
+
+
+```
+

@@ -153,6 +153,7 @@ We can then add other columns that are a function of existing ones. Sometimes th
   )
   
 
+
 ```
 
 Another really useful set of functions are the join functions. IF you had a dataframe where you wanted to add additional information for each country and year for example, a left_join() could be really useful. This join type is a left join because when joing data frames/ tibbles A and B (in that order), it will match the datasets using variables you dictate. All of the information of data frame A is retained in the left join and matched to those relevant in data frame B. 
