@@ -60,17 +60,16 @@ From the tidied data - create intermediate products for each country and save th
 ```{r}
 
 
-
-
 fisheries_list <- 
   fisheries_final |> 
   mutate(country = gsub(pattern = "/", replacement = "", country)) |> #remove forward slashes from country names because R thinks these are part of the file path
   mutate(country = case_when(grepl("Cura", country) ~ "Curacao",
                              grepl("Ivoire", country) ~ "Cote d'Ivoire",
+                             grepl("union", country)~ "Reunion",
+                             grepl("Saint Barth", country) ~ "St Barth",
                              TRUE ~ country)) |> #fixes countries where special symbols have corrupted
   group_by(country) |> 
   group_split()
-
 
 
 map(.x = fisheries_list, .f = \(this_country_df){
@@ -79,11 +78,11 @@ map(.x = fisheries_list, .f = \(this_country_df){
   
   message("Processing landings data for ", this_country_name)
   
-  saveRDS(object = this_country_df, file = sprintf("data/int/%s_fisheries_summarised.rds", this_country_name))
+  saveRDS(object = this_country_df, file = sprintf("data/int_/%s_fisheries_summarised.rds", this_country_name))
 
 })
 
-unique(fisheries_list$country)
+
 
 ```
 
