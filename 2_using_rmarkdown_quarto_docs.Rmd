@@ -1,0 +1,44 @@
+---
+title: "Using RMarkdown and Quarto"
+author: "Rich Cottrell"
+date: '2023-05-02'
+output: pdf_document
+---
+
+# What are Rmarkdown/Quarto documents?
+
+Rmarkdown (and the new generation Quarto documents) allow you to seamlessly integrate plain text and code into one document which helps to:
+
+-   Improve the description of what you are doing within each script
+-   Break's code and methods down into manageable chunks
+-   Documents how you approached your methods - so you can refer back to them in the future (e.g. for writing a manuscript).
+-   Write a manuscript or a report within R - every time you regenerate output files from Rmarkdown or Quarto documents, the figures and data products are updated to include any changes.
+-   Combine multiple coding languages if needed (R, Python, SQL, Bash)
+
+## Stepping through some functions to manipulate data
+
+
+To demonstrate how useful markdown documents can be for breaking down a method and describing your code we'll walk through  some functions on to data that I use pretty regularly - global fisheries landings. 
+
+
+First let's load the libraries we want to use.
+
+```{r setup, include=FALSE}
+
+library(tidyverse) # the tidyverse is a suite of packages you can use to manipulate and visualise data
+library(janitor) # this is a package that just helps clean things up.
+
+```
+
+Now we can bring in the file using 'readRDS' and start tidying.  The data is stored in RDS format rather than csv because it generates smaller files and that allows us to store it on github.
+
+When you view the raw data you can see, the column names are horrrrrible - with spaces and parentheses - and the data is in wide format.
+
+Seeing the output inline is one of the great aspects of R markdown. You can scroll through the data and check how the columns look super easily - this is a really good way of spotting errors. 
+
+```{r}
+
+(fisheries <- readRDS("data/input/fisheries_prod_raw.rds")) # reading in the compressed rds format data
+ 
+```
+

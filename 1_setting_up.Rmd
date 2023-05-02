@@ -1,0 +1,32 @@
+---
+title: "Principles for tidy and reproducible code - Set up Git and Github"
+author: "Rich Cottrell"
+date: '2023-05-01'
+output: pdf_document
+---
+
+# Getting started
+
+This session assumes that you have installed R and R Studio. If you have not, visit <https://cran.r-project.org/bin/windows/base/> (Windows) or <https://cran.r-project.org/bin/macosx/> (MacOS) to install R. Got to <https://posit.co/download/rstudio-desktop/> to download R Studio.
+
+## Git and Github
+
+### *What are Git and Github?*
+
+*Git* is an open-source version control software. It tracks the changes you make to files in a repository, creates a record of the versions, and stores these changes in a hidden sub folder. *Github* is an online interface that allows you to store, manage, and share your files. You don't need Github use git, but you do need git for communicating with storing your code on github. Using Github (or an equivalent) is very useful for code backup and encouraging open and reproducible science.
+
+First thing to do is install git to your computer. For windows go here <https://git-scm.com/download/win> , for MacOS go here <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git> and follow the prompts.
+
+Next you'll need a Github account. Go to <https://github.com/> and sign up for free.
+
+Now you need to setup communication between your local machine and github so that you can read from and write to repositories online (either that are yours or you are a collaborator on). The way we are going to do this is through creating a Secure Shell Protocol (SSH) key pair. SSH key pairs consist of a public key which you share with sites like Github and a private key that you keep only on your computer.
+
+### *Generating SSH key pairs*
+
+To create the key pair, there are already really good resources on github for this so no need to replicate here. Start at "Check for existing ssh keys" and work through to "Test your SSH connection" <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys>.
+
+**Note there are separate tabs on each page (at the top) for separating instructions by Mac, Windows, or Linux operating systems.**
+
+Once you have added your public key to github and checked your connection you should be ready to go with using github for storing and sharing your data!
+
+Any problems going with getting this set up then let me know.
