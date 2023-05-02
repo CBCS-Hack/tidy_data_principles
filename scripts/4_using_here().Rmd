@@ -7,12 +7,43 @@ output: pdf_document
 
 For some projects you will have lots of scripts and you may not want all of these scripts in your main project folder (the location we have for the previous scripts), but inside a dedicated 'scripts' folder instead to keep it all neat. 
 
-Top achieve this and still use the power of projects, you will need the 'here()' function inside the 'here' package. Let's see why.
+Top achieve this and still use the power of projects, you will need the 'here()' function inside the 'here' package. Let's see why - use the file path for the Australia_fisheries_summarised.rds as we did in the last script. 
 
 
 ```{r}
 
+readRDS("data/int_/Australia_fisheries_summarised.rds")
 
+
+```
+
+It doesn't work anymore because the script is no longer in the main project folder. What that file path is now doing is trying to tell R that the file is in the 'scripts/data/int_' folder - and that doesn't exist. So to remedy this you can use here. Wrapping the file path in the here function now points R to the file from the main project folder.
+
+```{r}
+library(here)
+
+readRDS(here("data/int_/Australia_fisheries_summarised.rds"))
+
+
+```
+
+
+And now this works. The same follows if you wish to do as before and produce a figure. This time we will produce the figure with the cumulative sum of Australian landings since 1950 and save to to the figures folder using here.
+
+```{r}
+
+  readRDS(here("data/int_/Australia_fisheries_summarised.rds")) |> 
+  select(-gdp_millions, -rel_value) |> 
+  mutate(cum_value = cumsum(sum_value)) |> 
+  ggplot() +
+  #geom_line(aes(x = year, y = sum_value), col = "dodgerblue4")+
+  geom_line(aes(x = year, y = cum_value), col = "firebrick4")+
+  labs(y = "Landings (tonnes)")+
+  theme_bw()+
+  theme(text = element_text(size=8))+
+  scale_y_continuous(labels = scales::label_comma())
+
+ggsave(plot = last_plot(), filename = here("figures/cumulativelandings_for_australia.jpg"), device = "jpg", dpi = 600, width = 9, height = 7, units = "cm")
 
 
 ```

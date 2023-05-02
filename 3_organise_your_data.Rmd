@@ -91,7 +91,7 @@ Now select a specific country, add a new variable, and save it as an output.
 ```{r}
 
 (aus_landings <- 
-  readRDS("data/int/Australia_fisheries_summarised.rds") |> 
+  readRDS("data/int_/Australia_fisheries_summarised.rds") |> 
   select(-gdp_millions, -rel_value) |> 
   mutate(cum_value = cumsum(sum_value))
 )
