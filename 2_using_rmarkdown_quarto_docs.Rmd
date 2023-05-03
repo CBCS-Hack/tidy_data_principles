@@ -36,13 +36,15 @@ When you view the raw data you can see, the column names are horrrrrible - with 
 
 Seeing the output inline is one of the great aspects of R markdown. You can scroll through the data and check how the columns look super easily - this is a really good way of spotting errors. 
 
+
+
 ```{r}
 
 (fisheries <- readRDS("data/input/fisheries_prod_raw.rds")) # reading in the compressed rds format data
  
 ```
 
-Now we can start manipulating the data. I'm going to walk through each step and reproduce different versions of the data. In reality, I would integrate each of these into one pipeline, which I do at the end. But for now we can step through each one of these, breaking each move down, and illustrating the benefits of using markdown.
+Now we can start manipulating the data. I will  use syntax from the tidyverse. This allows a continuous stream of code to perform consecutive functions on the same dataset, reducing code repetition. Here, I'm going to walk through each step and reproduce different versions of the data. In reality, I would integrate each of these into one pipeline, which I do at the end. But for now we can step through each one of these, breaking each move down, and illustrating the benefits of using markdown.
 
 Using janitor to clean the names up is an easy first step, although not always what you want
 ```{r, message=FALSE}
@@ -152,7 +154,6 @@ We can then add other columns that are a function of existing ones. Sometimes th
   ungroup()
   )
   
-
 
 ```
 

@@ -1,0 +1,37 @@
+---
+title: "Tidy data principles for open and reproducible science"
+author: "Dr Rich Cottrell"
+affiliation: "Research Fellow, UTAS/UQ"
+format: revealjs
+editor: visual
+---
+
+## Getting started
+
+This session assumes you have installed R and RStudio.
+
+Install R for [Windows](https://cran.r-project.org/bin/windows/base/).
+
+Install R for [MacOS](https://cran.r-project.org/bin/macosx/)
+
+Install RStudio from [Posit](https://posit.co/download/rstudio-desktop/) and follow prompts for the appropriate operating system.
+
+
+## Using Git and Github
+
+-   Git is an open source version control software. It tracks changes you make within a project, and records the versions of documents created.
+-   Github is an online interface that allows your to store, manage, and easily share your code.
+-   Github is therefore a powerful tool for open and reproducible science.
+
+<p align = "right">
+
+![](figures/icons/git-github.png)
+
+
+## You will also need: 
+
+- To have installed git - this is critical you will not be able to pull the code from the online repository we work on without it.
+- To have a github account (free sign up)
+
+
+
