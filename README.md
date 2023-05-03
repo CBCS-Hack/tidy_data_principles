@@ -20,5 +20,14 @@ Most scripts for this project are located in the main project folder with this R
 | folder | Description |
 |:------:|:-----------:|
 | input | This folder holds the raw data needed for the analysis. Really large data is typically stored outside of the project and I have a script dedicated purely to tidying data |
-| int_ | This is where processesed data is stored
+| int_ | This is where processesed data that is not the final product (often you need intermediary data) before being used later down the line |
+| output | Data products from the analysis are stored here |
+
+# figures
+
+All analysis figures are stored here. Often I create subfolders within this for 'supplementary' which are useful for the supplementary information in a journal article or 'explore' for just being able to rapidly visualise data without it cuttering your main figures.
+
+# docs
+Important documents pertinent to this analysis and repository are kept in the documents folder - this could even be the manuscript for the analysis (particularly if you use Rmarkdown/ Quarto to write it).
+
 
