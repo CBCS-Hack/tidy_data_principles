@@ -1,4 +1,9 @@
-# tidy_data_principles
+# Tidy code, reproducible science with R
+
+
+# Description
+
+This is where I detail which piece of work (e.g. journal article) this repository is associated with, including a link to the article. I usually explain the structure of the repository below this.
 
 This repository forms the basis of the workshop on tidy and reproducible code for R.
 
@@ -23,6 +28,11 @@ There are, however, a number of basic principles that I (and other far more capa
 -   ***Aim to keep large data outside of the project*** - you may often need large datasets for your analysis. If storage space was infinite, we would ideally keep this in every repository we needed this large dataset in. But storage space is rarely infinite - Github has a limit of 100MB. So if you can, store large data that you need to tidy and reduce in size outside the project. If you need a synthesised or smaller subset of the data, import the raw dataset into the project in a tidying script and create new and tidy input files. Then add your tidying script to your gitignore file. If the data needs to be kept as it is but accessed through the analysis repeatedly then I typically have a large dataset folder that I tell git to ignore in transfers to Github, or I store the data directly into an open access repository. You can either pull the data down from the online repository - or you can store the whole folder in the repository for individual download.
 
 Much of this thinking is borrowed and combined from friends and colleagues I have learned from along my journey - notably people at the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu/) and [OpenScapes](https://www.openscapes.org/) - and also amazing work by [Allison Horst](https://allisonhorst.com/).
+
+
+I go through these principles in the scripts contained in this project. And I outline how I usually present the contents of a respository in a READme.
+
+
 
 # scripts
 
