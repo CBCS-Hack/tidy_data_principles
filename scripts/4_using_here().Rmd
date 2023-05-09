@@ -17,7 +17,7 @@ readRDS("data/int_/Australia_fisheries_summarised.rds")
 
 ```
 
-It doesn't work anymore because the script is no longer in the main project folder. What that file path is now doing is trying to tell R that the file is in the 'scripts/data/int_' folder - and that doesn't exist. So to remedy this you can use here. Wrapping the file path in the here function now points R to the file from the main project folder.
+It doesn't work anymore because the script is no longer in the main project folder. What that file path is now doing is trying to tell R that the file is in the 'scripts/data/int_' folder - and that doesn't exist. So to remedy this you can use 'here'. Wrapping the file path in the here function now points R to the file from the main project folder.
 
 ```{r}
 library(here)

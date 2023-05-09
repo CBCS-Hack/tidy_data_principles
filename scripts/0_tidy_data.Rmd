@@ -1,0 +1,83 @@
+---
+title: "Tidying data"
+author: "Rich Cottrell"
+date: '2023-05-09'
+output: html_document
+---
+
+
+
+Github outright rejects data over 100MB - much of my data is over 100MB. So coming up with strategies to use big data that you can't store on Github is a good idea if you want your code to be reproducible.
+
+1) Store data outside the project in personal/ university storage.
+
+The first way I deal with this is to store large data outside of the project, clean it up, and store the smaller and tidier data inside the repository.
+
+In almost every repository, I make the first script a Tidying data script. This allows me to import large data from outside the project in, tidy, and then save to the project. This tidying data script usually provides all the tidy data products I need. I then either include the tidy-data script with a message at the top saying something like:
+
+####################################### THIS SÇRIPT IS ONLY FOR TIDYING DATA PRODUCTS FROM EXTERNAL SOURCES - DO NOT RUN ############################
+
+
+Or I use gitignore to ignore this script so it is not pushed to the remote repository (Github).
+
+
+
+2) Create a large data folder that you don't push to Github but you can store in a different remote repository'
+
+You may not have the capacity to store much data outside your project - or you may prefer to all data include unprocessed raw data inside your project. In which case you may just want to create a large data folder inside your project that you don't push to github. Instead you may wish to place the data in a university affiliated or independent repository e.g. Dryad. 
+
+In your ReadMe
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(here)
+
+
+
+read_csv(here("data/large_data/fisheries_prod_raw.csv")) |> 
+    clean_names() |> 
+    pivot_longer(names_to = "year", values_to = "value", 
+                 cols = -c(country_country, species_asfis_species, fishing_area_fao_major_fishing_area, unit_unit)) |> 
+                   filter(!country_country %in% c("Totals - Tonnes - live weight",   "Totals - Number" , "FAO. 2019. Fishery and Aquaculture Statistics. Global capture production 1950-2017 (FishstatJ). In: FAO Fisheries and Aquaculture Department [online]. Rome. Updated 2019. www.fao.org/fishery/statistics/software/fishstatj/en")) |> 
+                   mutate(year = gsub("x", "", year) |>    
+              as.numeric(),                   
+            flag = case_when(value == "..." ~ "No data",                      
+                             value == " " ~ "Data not separately available",
+                             value == "-" ~ "Nil or zero",                 
+                             value == "0 0" ~ "0<x<0.5",
+                             grepl(" F", value) ~ "estimate",
+                             TRUE ~ "Reported"),                          
+            value = case_when(value %in% c("...", " ", "-") ~ "0",        
+                              value == "0 0" ~ "0.25",                    
+                              grepl(" F", value) ~ gsub(" F", "", value), 
+                              TRUE ~ value) |>                         
+              as.numeric()) |> 
+    rename(country = country_country,
+           species = species_asfis_species,
+           area = fishing_area_fao_major_fishing_area) |> 
+    select(-unit_unit) |> 
+    group_by(country, year) |> 
+    summarise(sum_value = sum(value, na.rm = TRUE)) |> 
+    ungroup() |> 
+    group_by(country) |> 
+    nest() |> 
+  mutate(rel_value = purrr::map(data, ~(.$sum_value/.$sum_value[1]))) |> 
+  unnest(cols = c(data, rel_value)) |> 
+  ungroup() |> 
+  left_join(GDP, by = c("country", "year")) |> 
+  saveRDS(file = here("data/input/fisheries_raw_tidy.rds"))
+
+
+
+
+```
+
+
+
+```{r}
+
+ https://www.stats.govt.nz/large-datasets/csv-files-for-download/
+
+```
+
