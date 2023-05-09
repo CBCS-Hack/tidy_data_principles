@@ -5,28 +5,25 @@ date: '2023-05-09'
 output: html_document
 ---
 
-
-
 Github outright rejects data over 100MB - much of my data is over 100MB. So coming up with strategies to use big data that you can't store on Github is a good idea if you want your code to be reproducible.
 
-1) Store data outside the project in personal/ university storage.
+1)  **Store data outside the project in personal/ university storage.**
 
 The first way I deal with this is to store large data outside of the project, clean it up, and store the smaller and tidier data inside the repository.
 
 In almost every repository, I make the first script a Tidying data script. This allows me to import large data from outside the project in, tidy, and then save to the project. This tidying data script usually provides all the tidy data products I need. I then either include the tidy-data script with a message at the top saying something like:
 
-####################################### THIS SÇRIPT IS ONLY FOR TIDYING DATA PRODUCTS FROM EXTERNAL SOURCES - DO NOT RUN ############################
-
+####################################### THIS SÇRIPT IS ONLY FOR TIDYING DATA PRODUCTS FROM EXTERNAL SOURCES - DO NOT RUN
 
 Or I use gitignore to ignore this script so it is not pushed to the remote repository (Github).
 
+2)  **Create a large data folder that you don't push to Github but you can store in a different remote repository'**
 
+You may not have the capacity to store much data outside your project - or you may prefer to all data include unprocessed raw data inside your project. In which case you may just want to create a large data folder inside your project that you don't push to github. Instead you may wish to place the data in a university affiliated or independent repository e.g. Dryad.
 
-2) Create a large data folder that you don't push to Github but you can store in a different remote repository'
+In your ReadMe makes ure you explain how to use this file and where the user should store it.
 
-You may not have the capacity to store much data outside your project - or you may prefer to all data include unprocessed raw data inside your project. In which case you may just want to create a large data folder inside your project that you don't push to github. Instead you may wish to place the data in a university affiliated or independent repository e.g. Dryad. 
-
-In your ReadMe
+HEre I pull in a larger data file from large data and store it in the input data file.
 
 ```{r}
 library(tidyverse)
@@ -73,11 +70,29 @@ read_csv(here("data/large_data/fisheries_prod_raw.csv")) |>
 
 ```
 
+3)  **Pull in data from online**
 
+If you can - and it is efficient in terms of time - you can store or access individual large data files/raw data in repostories that are open access and pull them in using their url. Demonstrating with some open data from NZ givernment csv file.
 
 ```{r}
 
- https://www.stats.govt.nz/large-datasets/csv-files-for-download/
+ read_csv("https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2017-financial-year-provisional/Download-data/annual-enterprise-survey-2017-financial-year-provisional-csv.csv")
 
 ```
+
+
+One trick that can help you with pulling in data is developing source files. These might hold some common directories that you use in your project. You can store these directories pre saved in a .R file and pull them in remotely using 'source'. Try amending the file in src/directories to be applicable to your computer and pull in a file from your computer
+
+```{r}
+source(here("src/directories.R"))
+
+
+data.table::fread(file.path(watson_dir, "v5.0/Catch2015_2019.csv"))
+
+
+
+```
+
+
+
 
