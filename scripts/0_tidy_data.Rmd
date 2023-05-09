@@ -7,7 +7,7 @@ output: html_document
 
 Github outright rejects data over 100MB - much of my data is over 100MB. So coming up with strategies to use big data that you can't store on Github is a good idea if you want your code to be reproducible.
 
-1)  **Store data outside the project in personal/ university storage.**
+1)  **Store data outside the project in personal/ university storage.** blah
 
 The first way I deal with this is to store large data outside of the project, clean it up, and store the smaller and tidier data inside the repository.
 
@@ -86,8 +86,12 @@ One trick that can help you with pulling in data is developing source files. The
 ```{r}
 source(here("src/directories.R"))
 
+read_csv("/mnt/rdsi/raw_data/watson_2015/v5.0/Catch2015_2019.csv")
 
-data.table::fread(file.path(watson_dir, "v5.0/Catch2015_2019.csv"))
+data.table::fread(file.path(watson_dir, "v5.0/Catch2015_2019.csv")) |> 
+  dtplyr::lazy_dt(immutable = FALSE) |> group_by(CNumber) |> summarise(v = sum(ReportedIND
+, na.rm=TRUE))
+
 
 
 

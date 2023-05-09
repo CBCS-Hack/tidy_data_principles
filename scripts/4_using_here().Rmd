@@ -12,6 +12,8 @@ Top achieve this and still use the power of projects, you will need the 'here()'
 
 ```{r}
 
+library(tidyverse)
+
 readRDS("data/int_/Australia_fisheries_summarised.rds")
 
 

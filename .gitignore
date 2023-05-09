@@ -1,5 +1,9 @@
-#large data files
+#ignore th etidy script
+scripts/0_tidy_data.Rmd
 
+
+#large data files
+data/large_data/fisheries_prod_raw.csv
 
 
 
@@ -22,6 +26,9 @@
 
 # Output files from R CMD check
 /*.Rcheck/
+
+
+
 
 # RStudio files
 .Rproj.user/

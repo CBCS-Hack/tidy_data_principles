@@ -69,7 +69,7 @@ So the data is now in long format. But lets look at our data. What are the count
 ```{r,  results='hide', warning=FALSE, message=FALSE}
 summary(fisheries_clean_1) 
 
-unique(fisheries_clean_1$country_country) 
+#unique(fisheries_clean_1$country_country) 
 
 (fisheries_clean_2 <- 
   fisheries_clean_1 |> 
